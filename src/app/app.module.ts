@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { CipherModule } from './cipher/cipher.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { CipherModule } from './cipher/cipher.module';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     CipherModule
   ],

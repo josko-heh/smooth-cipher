@@ -3,7 +3,7 @@
         <li class="navbar-header"><a class="navbar-brand" [routerLink]="['']">SmCY</a></li>
 
         <li class="nav-item fRight">
-            <a class="nav-link">Ciphers</a>
+            <a [routerLink]="['cipher']" [queryParams]="{selected : 'caesar'}" class="nav-link">Caesar</a>
         </li>
     </ul>
 </nav>

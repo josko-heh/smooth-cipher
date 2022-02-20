@@ -1,12 +1,22 @@
 <main *ngIf="isSupported(selectedCipher)">
 
     <div class="btn-group">
-        <a hreg="" (click)="setType('encrypt')" class="btn btn-primary" [class.active]="type === 'encrypt'">Encrypt</a>
-        <a hreg="" (click)="setType('decrypt')"  class="btn btn-primary" [class.active]="type === 'decrypt'">Decrypt</a>
+        <a (click)="setMode('encrypt')" class="btn" 
+            [class.btn-primary]="mode === 'encrypt'" [class.btn-outline-primary]="mode != 'encrypt'">
+            Encrypt
+        </a>
+        <a (click)="setMode('decrypt')"  class="btn" 
+        [class.btn-primary]="mode === 'decrypt'" [class.btn-outline-primary]="mode != 'decrypt'">
+            Decrypt
+        </a>
     </div>
 
-    <textarea cols="30" rows="4">Input</textarea>
-    <textarea cols="30" rows="4"></textarea>
+    <textarea [(ngModel)]='inputText' cols="30" rows="4">Input</textarea>
+    <textarea [(ngModel)]='outputText' disabled cols="30" rows="4"></textarea>
+
+    <app-caesar *ngIf="selectedCipher == 'caesar'" (shiftEmmiter)="shift = $event"></app-caesar>
+
+    <button (click)="run()" type="button" class="btn btn-outline-dark">Run!</button>
 </main>
 
 <main *ngIf="!isSupported(selectedCipher)">

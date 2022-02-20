@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EncryptionService } from '../encryption.service';
 
 @Component({
   selector: 'app-general-cipher',
@@ -10,12 +11,14 @@ export class GeneralCipherComponent implements OnInit {
 
 
   selectedCipher: string = "";
-  type: string = "encrypt";
-
+  mode: string = "encrypt";
+  shift: number = 0;
+  inputText: string = "";
+  outputText: string = "";
   
 
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private encryptionService: EncryptionService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {this.selectedCipher = params.selected;} );
@@ -31,8 +34,12 @@ export class GeneralCipherComponent implements OnInit {
     return false;
   }
 
-  setType(toSet: string): void {
-    this.type = toSet;
+  setMode(toSet: string): void {
+    this.mode = toSet;
+  }
+
+  run(): void {
+    this.outputText = this.encryptionService.run(this.selectedCipher, this.mode, this.inputText, this.shift);
   }
 
 }
