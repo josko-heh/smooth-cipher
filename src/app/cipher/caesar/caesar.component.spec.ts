@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MonoalphabeticComponent } from './monoalphabetic.component';
+import { CaesarComponent } from './caesar.component';
 
-describe('MonoalphabeticComponent', () => {
-  let component: MonoalphabeticComponent;
-  let fixture: ComponentFixture<MonoalphabeticComponent>;
+describe('CaesarComponent', () => {
+  let component: CaesarComponent;
+  let fixture: ComponentFixture<CaesarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MonoalphabeticComponent ]
+      declarations: [ CaesarComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MonoalphabeticComponent);
+    fixture = TestBed.createComponent(CaesarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

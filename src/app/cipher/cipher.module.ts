@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MonoalphabeticComponent } from './monoalphabetic/monoalphabetic.component';
+import { CaesarComponent } from './caesar/caesar.component';
+import { GeneralCipherComponent } from './general-cipher/general-cipher.component';
 
 
 
 @NgModule({
   declarations: [
-    MonoalphabeticComponent
+    CaesarComponent,
+    GeneralCipherComponent
   ],
   imports: [
     CommonModule

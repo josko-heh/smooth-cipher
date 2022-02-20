@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CipherModule } from './cipher/cipher.module';
+import { GeneralCipherComponent } from './cipher/general-cipher/general-cipher.component';
 import { MainPageComponent } from './main-page/main-page.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent},
-  { path: 'cipher', loadChildren: () => CipherModule },
+  { path: 'cipher', component: GeneralCipherComponent },
   { path: '**', component: MainPageComponent}];
 
 @NgModule({

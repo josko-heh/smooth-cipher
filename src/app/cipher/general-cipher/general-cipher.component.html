@@ -1,0 +1,15 @@
+<main *ngIf="isSupported(selectedCipher)">
+
+    <div class="btn-group">
+        <a hreg="" (click)="setType('encrypt')" class="btn btn-primary" [class.active]="type === 'encrypt'">Encrypt</a>
+        <a hreg="" (click)="setType('decrypt')"  class="btn btn-primary" [class.active]="type === 'decrypt'">Decrypt</a>
+    </div>
+
+    <textarea cols="30" rows="4">Input</textarea>
+    <textarea cols="30" rows="4"></textarea>
+</main>
+
+<main *ngIf="!isSupported(selectedCipher)">
+    <span>Please select a cipher.</span>
+</main>
+
