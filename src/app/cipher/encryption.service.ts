@@ -10,36 +10,61 @@ export class EncryptionService {
   constructor() { }
 
 
-  run(cypher: string, mode: string, input: string, n?: number): string {
+  run(cypher: string, mode: string, input: string, key: string): string {
 
-    if (cypher == "caesar" && mode == "encrypt" && typeof n !== 'undefined') {
-      return this.encryptCaesar(input, n);
+    if (cypher == "caesar" && mode == "encrypt") {
+      return this.encryptCaesar(input, key);
+    } else if (cypher == "columnar" && mode == "encrypt") {
+      return this.encryptColumnar(input, key);
     }
 
     throw new Error("Internal: Invalid arguments for encryption/decryption!");
   }
 
 
-  private encryptCaesar(input: string, n: number): string {
+  private encryptCaesar(input: string, key: string): string {
     
-    const inArray = [...input];
+    const shift = Number(key);
 
-		return inArray.map( inChar => {
+		return [...input].map( inChar => {
 
 			if (!this.isInAlphabet(inChar)) {
 				return inChar;
 			}
 
 
-      var isLower: boolean = inChar == inChar.toLowerCase();
+      const isLower: boolean = inChar == inChar.toLowerCase();
 
       inChar = inChar.toLowerCase();
 
-			var encryptedCharIndex: number = (this.alphabetLow.indexOf(inChar.toLowerCase()) + n) % this.alphabetLow.length;
+			const encryptedCharIndex: number = (this.alphabetLow.indexOf(inChar.toLowerCase()) + shift) % this.alphabetLow.length;
 			const encryptedCharLow: string = this.alphabetLow[encryptedCharIndex]
 
 			return isLower ? encryptedCharLow : encryptedCharLow.toUpperCase();
 		}).join("");
+  }
+
+
+  private encryptColumnar(input: string, key: string): string {
+    let columns: string[][] = [];
+
+    for (let i = 0; i < key.length; i++) {
+      let column = [...input].filter( (value, index, Arr) => (index-i) % key.length == 0 );
+
+      columns.push(column);
+    }
+
+    let encrypted = "";
+
+    for (let i = 0; i < key.length; i++) {
+      console.log(columns[parseInt(key[i])]);
+      console.log(parseInt(key[i]));
+      
+      
+      encrypted += columns[parseInt(key[i])].join('');
+    }
+    
+    return encrypted;
   }
 
 
@@ -49,11 +74,7 @@ export class EncryptionService {
       throw new Error("Internal: Invalid argument for isInAlphabet check!");
     }
 
-    if (this.alphabetLow.indexOf(char.toLowerCase()) === -1) {
-      return false;
-    }
-
-    return true;
+    return this.alphabetLow.includes(char.toLowerCase());
   }
 
 }

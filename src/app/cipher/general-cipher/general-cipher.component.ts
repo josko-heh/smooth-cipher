@@ -9,10 +9,13 @@ import { EncryptionService } from '../encryption.service';
 })
 export class GeneralCipherComponent implements OnInit {
 
+  private supported: string[] = ["caesar", "columnar"];
 
   selectedCipher: string = "";
+
   mode: string = "encrypt";
-  shift: number = 0;
+  key: string = "";
+
   inputText: string = "";
   outputText: string = "";
   
@@ -27,11 +30,7 @@ export class GeneralCipherComponent implements OnInit {
 
   isSupported(cipher: string): boolean {
 
-    if (cipher === "caesar") {
-      return true;
-    }
-
-    return false;
+    return this.supported.includes(cipher);
   }
 
   setMode(toSet: string): void {
@@ -39,7 +38,7 @@ export class GeneralCipherComponent implements OnInit {
   }
 
   run(): void {
-    this.outputText = this.encryptionService.run(this.selectedCipher, this.mode, this.inputText, this.shift);
+    this.outputText = this.encryptionService.run(this.selectedCipher, this.mode, this.inputText, this.key);
   }
 
 }

@@ -7,7 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class CaesarComponent implements OnInit {
 
-  @Output() shiftEmmiter =  new EventEmitter<number>();
+  @Output() shiftEmmiter =  new EventEmitter<string>();
   shift: number = 0;
 
   constructor() { }
@@ -18,7 +18,7 @@ export class CaesarComponent implements OnInit {
 
   emitShift(value: number) {
     if (this.isValidShift(value)) {
-      this.shiftEmmiter.emit(value);
+      this.shiftEmmiter.emit(value.toString());
     }
   }
 
@@ -26,6 +26,11 @@ export class CaesarComponent implements OnInit {
   private isValidShift(value: number): boolean {
     if (value < 0 || value > 25) {
       alert("Enter shift between 0 and 25 (inclusive)!");
+      return false;
+    }
+
+    if (!Number.isInteger(value)) {
+      alert("Shift can be integer only!");
       return false;
     }
 
