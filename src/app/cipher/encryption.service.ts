@@ -18,7 +18,9 @@ export class EncryptionService {
       return this.decryptCaesar(input, key);
     } else if (cypher == "columnar" && mode == "encrypt") {
       return this.encryptColumnar(input, key);
-    }
+    } else if (cypher == "columnar" && mode == "decrypt") {
+    return this.decryptColumnar(input, key);
+  }
 
     throw new Error("Internal: Invalid arguments for encryption/decryption!");
   }
@@ -45,7 +47,6 @@ export class EncryptionService {
 			return isLower ? encryptedCharLow : encryptedCharLow.toUpperCase();
 		}).join("");
   }
-
 
   private decryptCaesar(input: string, key: string): string {
       
@@ -87,6 +88,33 @@ export class EncryptionService {
     return encrypted;
   }
 
+  private decryptColumnar(input: string, key: string): string {
+    let columns: string[][] = [];
+
+    for (let i = 0; i < key.length; i++) {
+      let column = [...input].filter( (value, index, Arr) => (index-i) % key.length == 0 );
+
+      columns.push(column);
+    }
+
+    console.log(columns);
+    
+
+    let decrypted = "";
+
+    for (let i = 0; i < columns.length; i++) {
+
+      let keyCharMap = key.split('').map(function (x, j) { 
+        return { key: x, char: columns[i][j] } 
+      });
+
+      console.log("keyCharMap:" ,keyCharMap);
+      
+      decrypted += keyCharMap.sort( (a, b) => parseInt(a.key) - parseInt(b.key) ).map(a => a.char).join('');
+    }
+    
+    return decrypted;
+  }
 
   private isInAlphabet(char: string): boolean {
 
