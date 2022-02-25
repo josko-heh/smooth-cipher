@@ -14,6 +14,8 @@ export class EncryptionService {
 
     if (cypher == "caesar" && mode == "encrypt") {
       return this.encryptCaesar(input, key);
+    } else if (cypher == "caesar" && mode == "decrypt") {
+      return this.decryptCaesar(input, key);
     } else if (cypher == "columnar" && mode == "encrypt") {
       return this.encryptColumnar(input, key);
     }
@@ -44,6 +46,28 @@ export class EncryptionService {
 		}).join("");
   }
 
+
+  private decryptCaesar(input: string, key: string): string {
+      
+    const shift = Number(key);
+
+		return [...input].map( inChar => {
+
+			if (!this.isInAlphabet(inChar)) {
+				return inChar;
+			}
+
+
+      const isLower: boolean = inChar == inChar.toLowerCase();
+
+      inChar = inChar.toLowerCase();
+
+			const decryptedCharIndex: number = (this.alphabetLow.indexOf(inChar.toLowerCase()) - shift) % this.alphabetLow.length;
+			const decryptedCharLow: string = this.alphabetLow[decryptedCharIndex]
+
+			return isLower ? decryptedCharLow : decryptedCharLow.toUpperCase();
+		}).join("");
+  }
 
   private encryptColumnar(input: string, key: string): string {
     let columns: string[][] = [];
