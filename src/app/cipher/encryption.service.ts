@@ -57,10 +57,6 @@ export class EncryptionService {
     let encrypted = "";
 
     for (let i = 0; i < key.length; i++) {
-      console.log(columns[parseInt(key[i])]);
-      console.log(parseInt(key[i]));
-      
-      
       encrypted += columns[parseInt(key[i])].join('');
     }
     
