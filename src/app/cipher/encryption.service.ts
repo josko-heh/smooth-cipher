@@ -121,8 +121,6 @@ export class EncryptionService {
       columns.push(column);
     }
 
-    console.log("columns:" ,columns);
-    
 
     let decrypted = "";
 
@@ -132,10 +130,6 @@ export class EncryptionService {
         return { key: x, char: columns[j][i] } 
       });
 
-      console.log("keyCharMap:" ,keyCharMap);
-      console.log("keyCharMap.sort:" ,keyCharMap.sort( (a, b) => parseInt(a.key) - parseInt(b.key) ).map(a => a.char).join(''));
-
-      
       decrypted += keyCharMap.sort( (a, b) => parseInt(a.key) - parseInt(b.key) ).map(a => a.char).join('');
     }
     
