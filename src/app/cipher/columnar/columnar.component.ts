@@ -20,8 +20,6 @@ export class ColumnarComponent implements OnInit {
    
     let key: string = this.transformToKey(inputKey);
 
-    console.log(key);
-    
     if (this.isValidKey(key)) {
       this.keyEmmiter.emit(key);
     }

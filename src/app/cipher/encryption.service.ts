@@ -90,30 +90,66 @@ export class EncryptionService {
 
   private decryptColumnar(input: string, key: string): string {
     let columns: string[][] = [];
+    let columnLength = Math.ceil(input.length / key.length);
+
+    let nullCells: {row:number, col:number}[] = [];
+    let numOfNullCells = (columnLength * key.length) - input.length;
+
+    let keyCharIndexCounter = key.length - 1;
+    for (let i = 0; i < numOfNullCells; i++) {
+      nullCells.push({row:columnLength-1, col:parseInt(key[keyCharIndexCounter])});
+      keyCharIndexCounter--;
+    }
+    
+    let charCounter = 0;
 
     for (let i = 0; i < key.length; i++) {
-      let column = [...input].filter( (value, index, Arr) => (index-i) % key.length == 0 );
+      let column: string[] = [];
+
+      for (let j = 0; j < columnLength; j++) {
+        
+        if (charCounter == input.length) {
+          break;
+        }
+        
+        if (!isNullCell({row:j, col:i})) {
+          column.push(input[charCounter])
+          charCounter++;
+        }
+      }
 
       columns.push(column);
     }
 
-    console.log(columns);
+    console.log("columns:" ,columns);
     
 
     let decrypted = "";
 
-    for (let i = 0; i < columns.length; i++) {
+    for (let i = 0; i < columnLength; i++) {
 
       let keyCharMap = key.split('').map(function (x, j) { 
-        return { key: x, char: columns[i][j] } 
+        return { key: x, char: columns[j][i] } 
       });
 
       console.log("keyCharMap:" ,keyCharMap);
+      console.log("keyCharMap.sort:" ,keyCharMap.sort( (a, b) => parseInt(a.key) - parseInt(b.key) ).map(a => a.char).join(''));
+
       
       decrypted += keyCharMap.sort( (a, b) => parseInt(a.key) - parseInt(b.key) ).map(a => a.char).join('');
     }
     
     return decrypted;
+
+
+    function isNullCell(cell: {row:number, col:number}) {
+      for (let i = 0; i < nullCells.length; i++) {
+        if (cell.row == nullCells[i].row && cell.col == nullCells[i].col) {
+          return true;
+        }
+      }
+      return false;
+    }
   }
 
   private isInAlphabet(char: string): boolean {
