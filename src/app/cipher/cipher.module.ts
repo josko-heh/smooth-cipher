@@ -4,6 +4,7 @@ import { CaesarComponent } from './caesar/caesar.component';
 import { GeneralCipherComponent } from './general-cipher/general-cipher.component';
 import { FormsModule } from '@angular/forms';
 import { ColumnarComponent } from './columnar/columnar.component';
+import { DesComponent } from './des/des.component';
 
 
 
@@ -11,7 +12,8 @@ import { ColumnarComponent } from './columnar/columnar.component';
   declarations: [
     CaesarComponent,
     GeneralCipherComponent,
-    ColumnarComponent
+    ColumnarComponent,
+    DesComponent
   ],
   imports: [
     CommonModule,

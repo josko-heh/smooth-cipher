@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,12 @@ export class EncryptionService {
     } else if (cypher == "columnar" && mode == "encrypt") {
       return this.encryptColumnar(input, key);
     } else if (cypher == "columnar" && mode == "decrypt") {
-    return this.decryptColumnar(input, key);
-  }
+      return this.decryptColumnar(input, key);
+    } else if (cypher == "des" && mode == "encrypt") {
+      return this.encryptDes(input, key);
+    } else if (cypher == "des" && mode == "decrypt") {
+      return this.decryptDes(input, key);
+    }
 
     throw new Error("Internal: Invalid arguments for encryption/decryption!");
   }
@@ -145,6 +150,17 @@ export class EncryptionService {
       return false;
     }
   }
+
+  private encryptDes(input: string, key: string): string {
+
+    return CryptoJS.DES.encrypt(input, key).toString();
+  }
+
+  private decryptDes(input: string, key: string): string {
+
+    return CryptoJS.DES.decrypt(input, key).toString(CryptoJS.enc.Utf8);
+  }
+
 
   private isInAlphabet(char: string): boolean {
 
