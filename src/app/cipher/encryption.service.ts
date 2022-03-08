@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
+import * as NodeRSA from 'node-rsa';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ export class EncryptionService {
       return this.encryptDes(input, key);
     } else if (cypher == "des" && mode == "decrypt") {
       return this.decryptDes(input, key);
+    } else if (cypher == "rsa" && mode == "encrypt") {
+      return this.encryptRsa(input, key);
+    } else if (cypher == "rsa" && mode == "decrypt") {
+      return this.decryptRsa(input, key);
     }
 
     throw new Error("Internal: Invalid arguments for encryption/decryption!");
@@ -159,6 +164,16 @@ export class EncryptionService {
   private decryptDes(input: string, key: string): string {
 
     return CryptoJS.DES.decrypt(input, key).toString(CryptoJS.enc.Utf8);
+  }
+
+  private encryptRsa(input: string, key: string): string {
+
+    return new NodeRSA(key).encrypt(input, 'base64'); // ili utf8?
+  }
+
+  private decryptRsa(input: string, key: string): string {
+
+    return new NodeRSA(key).decrypt(input, 'utf8'); // ili utf8?
   }
 
 

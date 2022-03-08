@@ -17,6 +17,7 @@
     <app-caesar *ngIf="selectedCipher == 'caesar'" (shiftEmmiter)="key = $event"></app-caesar>
     <app-columnar *ngIf="selectedCipher == 'columnar'" (keyEmmiter)="key = $event"></app-columnar>
     <app-des *ngIf="selectedCipher == 'des'" (keyEmmiter)="key = $event"></app-des>
+    <app-rsa *ngIf="selectedCipher == 'rsa'" (keyEmmiter)="key = $event"></app-rsa>
 
     <button (click)="run()" type="button" class="btn btn-outline-dark">Run!</button>
 </main>

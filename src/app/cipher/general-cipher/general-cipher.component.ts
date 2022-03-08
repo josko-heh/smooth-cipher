@@ -9,7 +9,7 @@ import { EncryptionService } from '../encryption.service';
 })
 export class GeneralCipherComponent implements OnInit {
 
-  private supported: string[] = ["caesar", "columnar", "des"];
+  private supported: string[] = ["caesar", "columnar", "des", "rsa"];
 
   selectedCipher: string = "";
 
