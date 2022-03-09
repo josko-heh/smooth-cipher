@@ -14,7 +14,8 @@ export class DesComponent implements OnInit {
   ngOnInit(): void {}
 
 
-  emitKey(inputKey: string) {
-    this.key = inputKey;
+  emitKey() {
+    this.keyEmmiter.emit(this.key);
   }
+  
 }

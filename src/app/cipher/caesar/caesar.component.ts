@@ -16,9 +16,9 @@ export class CaesarComponent implements OnInit {
   }
 
 
-  emitShift(value: number) {
-    if (this.isValidShift(value)) {
-      this.shiftEmmiter.emit(value.toString());
+  emitShift() {
+    if (this.isValidShift(this.shift)) {
+      this.shiftEmmiter.emit(this.shift.toString());
     }
   }
 

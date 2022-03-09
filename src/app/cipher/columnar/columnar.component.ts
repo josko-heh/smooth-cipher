@@ -16,12 +16,12 @@ export class ColumnarComponent implements OnInit {
   }
 
 
-  emitKey(inputKey: string) {
+  emitKey() {
    
-    let key: string = this.transformToKey(inputKey);
+    const transformedKey: string = this.transformToKey(this.key);
 
-    if (this.isValidKey(key)) {
-      this.keyEmmiter.emit(key);
+    if (this.isValidKey(transformedKey)) {
+      this.keyEmmiter.emit(transformedKey);
     }
   }
 
@@ -49,7 +49,7 @@ export class ColumnarComponent implements OnInit {
     const differenceAry = sortedKey.slice(1).map(function(n, i) { return n - sortedKey[i] });
 
     if (!differenceAry.every(value => value == 1)) {
-      alert("Key numbers must be consecutive!");
+      alert("Key must contain consecutive numbers!");
       return false;
     }
 

@@ -1,0 +1,3 @@
+li[class="navbar-header"] > a:first-child {
+    padding: 0 10px;
+}

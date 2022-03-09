@@ -16,8 +16,8 @@ export class GeneralCipherComponent implements OnInit {
   mode: string = "encrypt";
   key: string = "";
 
-  inputText: string = "";
-  outputText: string = "";
+  inputText: string = "Input";
+  outputText: string = "Output";
   
 
 

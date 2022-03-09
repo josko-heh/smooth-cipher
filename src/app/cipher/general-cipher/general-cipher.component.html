@@ -11,8 +11,8 @@
         </a>
     </div>
 
-    <textarea [(ngModel)]='inputText' cols="30" rows="4">Input</textarea>
-    <textarea [(ngModel)]='outputText' disabled cols="30" rows="4"></textarea>
+    <textarea [(ngModel)]='inputText' cols="40" rows="4"></textarea>
+    <textarea [(ngModel)]='outputText' disabled cols="40" rows="4">Output</textarea>
 
     <app-caesar *ngIf="selectedCipher == 'caesar'" (shiftEmmiter)="key = $event"></app-caesar>
     <app-columnar *ngIf="selectedCipher == 'columnar'" (keyEmmiter)="key = $event"></app-columnar>
