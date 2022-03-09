@@ -173,7 +173,7 @@ export class EncryptionService {
 
   private decryptRsa(input: string, key: string): string {
 
-    return new NodeRSA(key).decrypt(input, 'utf8'); // ili utf8?
+    return new NodeRSA(key).decrypt(input, 'utf8');
   }
 
 
