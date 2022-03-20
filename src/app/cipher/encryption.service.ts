@@ -168,7 +168,7 @@ export class EncryptionService {
 
   private encryptRsa(input: string, key: string): string {
 
-    return new NodeRSA(key).encrypt(input, 'base64'); // ili utf8?
+    return new NodeRSA(key).encrypt(input, 'base64');
   }
 
   private decryptRsa(input: string, key: string): string {

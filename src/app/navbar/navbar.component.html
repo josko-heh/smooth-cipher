@@ -3,6 +3,9 @@
         <li class="navbar-header"><a class="navbar-brand" [routerLink]="['']">SmCY</a></li>
 
         <li class="nav-item fRight">
+            <a [routerLink]="['hmac']" class="nav-link">HMAC</a>
+        </li>
+        <li class="nav-item fRight">
             <a [routerLink]="['cipher']" [queryParams]="{selected : 'caesar'}" class="nav-link">Caesar</a>
         </li>
         <li class="nav-item fRight">
