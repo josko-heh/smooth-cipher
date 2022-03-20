@@ -1,0 +1,19 @@
+main {
+    margin-left: 45px;    
+}
+
+h2 {
+    margin: 10px 0 13px 0;
+}
+
+textarea, button {
+    display: block;
+}
+
+div[class="btn-group"], button {
+    margin: 15px;
+}
+
+span {
+    display: block;
+}

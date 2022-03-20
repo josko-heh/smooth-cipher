@@ -1,0 +1,12 @@
+<main>
+    <h2>HMAC-SHA256</h2>
+
+    <textarea [(ngModel)]='inputText' cols="40" rows="4"></textarea>
+    <textarea [(ngModel)]='outputText' disabled cols="40" rows="4">Output</textarea>
+    <span>Output is in Base64 encoding.</span>
+
+    <label for="key">Enter key:</label>
+    <input [(ngModel)]='key' name="key">
+
+    <button (click)="run()" type="button" class="btn btn-outline-dark">Run!</button>
+</main>
